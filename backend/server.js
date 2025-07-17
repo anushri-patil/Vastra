@@ -2,8 +2,9 @@ const mysql = require("mysql2");
 const express = require("express");
 const app = express();
 const path = require("path");
+const cors = require("cors");
 
-
+app.use(cors());
 app.use(express.json());
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
@@ -79,6 +80,39 @@ app.get('/products' ,(req, res) => {
     // res.status(200);
     // res.send("express js tutorial");
 });
+
+
+app.post('/products', (req,res) => {
+    const {name, description, quantity, price} = req.body;
+    const sql = "insert into products (name, description, quantity, price) values (?, ?, ?, ?)"
+    db.query(sql, [name, description, quantity, price], (err, result) => {
+        if(err){
+            console.log("db error", err);
+        }
+        res.send("product added");
+    });
+});
+
+
+app.put('/products/:id', (req,res) => {
+    const {name, description, quantity, price} = req.body;
+    const {id} = req.params;
+
+    const sql = "update products set name=?, description=?, quantity=?, price=? where id=?"
+    const params = [name,description,quantity, price, id];
+
+    db.query(sql, params, (err,result) => {
+        if(err){
+            console.log("error", err);
+        }
+        res.send("product is updated");
+    });
+});
+
+
+
+
+
 
 
 app.listen(8080, () => {
