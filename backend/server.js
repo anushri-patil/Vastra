@@ -3,6 +3,8 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const cors = require("cors");
+const multer = require("multer");
+const upload = multer();
 
 app.use(cors());
 app.use(express.json());
@@ -82,7 +84,7 @@ app.get('/products' ,(req, res) => {
 });
 
 
-app.post('/products', (req,res) => {
+app.post('/products',upload.none(), (req,res) => {
     const {name, description, quantity, price} = req.body;
     const sql = "insert into products (name, description, quantity, price) values (?, ?, ?, ?)"
     db.query(sql, [name, description, quantity, price], (err, result) => {

@@ -20,6 +20,7 @@ function displayProducts(products){
 
     products.forEach(product => {
         const item = document.createElement('div');
+        item.classList.add("product-card");
         item.innerHTML = `
             <img src="${product.image_url}" alt="${product.name}">
             <h3>${product.name}</h3>

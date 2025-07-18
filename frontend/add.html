@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Add New Product</h2>
+    <form id="addProduct" enctype="multipart/form-data">
+        <input type="text" name="name" placeholder="Product Name"><br>
+        <textarea name="description" placeholder="Description"></textarea><br>
+        <input type="number" name="quantity" placeholder="Quantity"><br>
+        <input type="text" name="price" placeholder="Price"><br>
+        <button type="submit">Add Product</button>
+    </form>
+</body>
+</html>
+
+<script>
+    const form = document.getElementById("addProduct");
+    form.addEventListener("submit", async(e) => {
+        e.preventDefault();
+        const data = new FormData(form);
+        try{
+            const response = await fetch("http://localhost:8080/products" , {
+                method : "POST",
+                body:data
+            });
+            if(response.ok){
+                alert("Product added");
+                window.location.href = "index.html";
+            } else{
+                const error = await response.text();
+                alert("error:", error);
+            }
+        } catch(err){
+            console.log("Error", err);
+        }
+    });
+</script>
