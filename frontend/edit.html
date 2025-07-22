@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit Product</title>
+</head>
+<body>
+  <h2>Edit Product</h2>
+  <form id="editForm" enctype="multipart/form-data">
+    <input type="text" name="name" placeholder="Name" required><br>
+    <textarea name="description" placeholder="Description" required></textarea><br>
+    <input type="number" name="quantity" placeholder="Quantity" required><br>
+    <input type="number" name="price" step="0.01" placeholder="Price" required><br>
+
+    <!-- Show current image -->
+    <img id="currentImage" src="" width="150" alt="Current Image"><br><br>
+
+    <!-- Upload new image (optional) -->
+    <label>Change Image: </label>
+    <input type="file" name="image" accept="image/*"><br><br>
+
+    <button type="submit">Update Product</button>
+  </form>
+</body>
+<script src="script/edit.js"></script>
+</html>
