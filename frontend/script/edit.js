@@ -1,6 +1,5 @@
     const id = new URLSearchParams(window.location.search).get('id');
 
-    // Load existing product details
     fetch(`http://localhost:8000/products`)
       .then(res => res.json())
       .then(data => {
@@ -18,14 +17,13 @@
         console.log("error product loading", err);
       });
 
-    // Submit form
     document.getElementById("editForm").onsubmit = async e => {
       e.preventDefault();
       const form = new FormData(e.target);
 
       await fetch(`http://localhost:8000/products/${id}`, {
         method: "PUT",
-        body: form // Note: no need to stringify FormData or set headers
+        body: form
       });
 
       window.location.href = "index.html";

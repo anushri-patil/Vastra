@@ -35,7 +35,6 @@ function displayProducts(products) {
         container.appendChild(item);
     });
 
-    // Attach edit button event listeners
     document.querySelectorAll('.edit-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
             const productId = e.target.dataset.id;

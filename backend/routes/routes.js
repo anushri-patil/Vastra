@@ -6,10 +6,10 @@ const path = require("path");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, '../../images')); // store in /images
+    cb(null, path.join(__dirname, '../../images'));
   },
   filename: (req, file, cb) => {
-    cb(null,file.originalname); // unique filename
+    cb(null, `${Date.now()}-${file.originalname}`);
   }
 });
 
@@ -41,7 +41,7 @@ router.post('/', upload.single("image"), (req, res) => {
     console.log("BODY", req.body);
 });
 
-
+//update product
 router.put('/:id', upload.single("image"), (req, res) => {
   const { name, description, quantity, price } = req.body;
   const id = req.params.id;
@@ -65,7 +65,7 @@ router.put('/:id', upload.single("image"), (req, res) => {
 });
 
 
-
+//delete
 router.delete("/:id", (req, res) => {
   const { id } = req.params;
   db.query("DELETE FROM products WHERE id=?", [id], (err, data) => {

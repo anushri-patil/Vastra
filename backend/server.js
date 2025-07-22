@@ -4,7 +4,7 @@ const path = require("path");
 const app = express();
 const multer = require('multer');
 const productRoutes = require("./routes/routes.js");
-require("./models/model.js"); // triggers DB + table creation
+require("./models/model.js");
 
 app.use(cors());
 app.use(express.json());
@@ -16,7 +16,7 @@ app.use('/products', productRoutes);
 
 
 
-// Start server
+//server starting 
 app.listen(8000, () => {
     console.log("Server running on http://localhost:8000");
 });
