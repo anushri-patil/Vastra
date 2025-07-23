@@ -2,12 +2,12 @@
   display: flex;
   justify-content: space-between;
   padding: 0.5rem;
+  color: rgb(62, 99, 99);
 }
 
 .title {
   font-size: 50px;
   font-family: Georgia, 'Times New Roman', Times, serif;
-  color: rgb(62, 99, 99);
 }
 
 .container-top .btn {
@@ -16,6 +16,14 @@
   align-items: center;
   justify-content: center;
   color: rgb(62, 99, 99);
+}
+
+.container-top #search{
+  color: rgb(62, 99, 99);
+  padding: 0.8rem;
+  font-size: 1.2rem;
+  border: 0.9px solid black;
+  border-radius: 5px;
 }
 
 .products {

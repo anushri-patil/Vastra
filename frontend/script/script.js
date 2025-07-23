@@ -66,4 +66,13 @@ async function deleteProduct(id) {
   }
 }
 
+document.getElementById("search").addEventListener("input", async e => {
+  const key = e.target.value.toLowerCase();
+  const res = await fetch("http://localhost:8000/products");
+  console.log(res);
+  const data = await res.json();
+  const filterProd = data.filter(p => p.name.toLowerCase().includes(key));
+  displayProducts(filterProd);
+});
+
 window.onload = getProducts;
