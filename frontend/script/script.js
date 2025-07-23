@@ -69,10 +69,23 @@ async function deleteProduct(id) {
 document.getElementById("search").addEventListener("input", async e => {
   const key = e.target.value.toLowerCase();
   const res = await fetch("http://localhost:8000/products");
-  console.log(res);
   const data = await res.json();
   const filterProd = data.filter(p => p.name.toLowerCase().includes(key));
-  displayProducts(filterProd);
+  if(filterProd.length === 0){
+    console.log("No Products Found");
+    document.querySelector('.products').innerHTML = `<div class="noProd">No products found!!</div>`;
+  }
+  else{
+    displayProducts(filterProd);
+  }
+});
+
+document.getElementById("sort").addEventListener("click", async e => {
+  const res = await fetch("http://localhost:8000/products");
+  const products = await res.json();
+  const sorted = products.sort((a,b) => parseFloat(a.price) - parseFloat(b.price));
+  console.log(sorted);
+  displayProducts(sorted);
 });
 
 window.onload = getProducts;
