@@ -59,6 +59,7 @@ function displayProducts(products) {
 async function deleteProduct(id) {
   if (!confirm("Are you sure you want to delete this product?")) return;
   try {
+    console.log("Deleting product with ID:", id);
     await fetch(`http://localhost:8000/products/${id}`, { method: "DELETE" });
     getProducts();
   } catch (err) {
